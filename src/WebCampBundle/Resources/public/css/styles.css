@@ -1,0 +1,63 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    background-image: url("../pictures/back.jpg");
+    background-size: cover;
+}
+
+#header1 {
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+}
+
+#header2 {
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    margin-top: 5%;
+}
+
+#picture1 {
+    display: inline-block;
+}
+
+#picture2 {
+    display: inline-block;
+    float: right;
+    width: 7%;
+}
+
+#form {
+    left: 50%;
+    top: 50%;
+    margin: -54px 0 0 -150px;
+    position: absolute;
+}
+
+label {
+    width: 150px;
+    display: block;
+    float: left;
+}
+
+#submit {
+    margin: 0 auto;
+    display: block;
+}
+
+#log {
+    text-align: center;
+    top: 50%;
+    position: relative;
+}
+
+#error {
+    color: #a94442;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: large;
+}

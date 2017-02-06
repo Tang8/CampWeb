@@ -1,0 +1,326 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Interface Utilisateur</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('../web/css/users.css') }}" type="text/css" media="all"/>
+        <link rel="stylesheet" href="{{ asset('../web/css/bootstrap/css/bootstrap.css') }}" type="text/css" media="all"/>
+    {% endblock %}
+    {% block javascripts %}
+        <script src="{{ '../../web/js/users.js' }}"></script>
+        <script>
+            setInterval(function() { prop(); } , 100);
+        </script>
+        <script>
+            setInterval(function() { prop2(); } , 100);
+        </script>
+        <script src="{{ '../../web/js/jquery.min.js' }}"></script>
+        <script src="{{ '../../web/css/bootstrap/js/bootstrap.min.js' }}"></script>
+    {% endblock %}
+    <link rel="icon" type="image/png" href="{{ asset('../web/pictures/favicon.ico') }}">
+</head>
+<body>
+<ul id="onglets">
+    <li><a onclick="adder();"> Ajouter E.P.I </a></li>
+    <li><a onclick="checker();"> Verifier E.P.I </a></li>
+</ul>
+<ul id="onglets1">
+    <li><a href="{{ path('logout') }}">Logout</a></li>
+</ul>
+<div class="add" id="add" >
+    <form method="post" action="">
+        <label>Type d'E.P.I :<br><br>
+            <SELECT name="type" size="1" id="EPI" class="form-control" id="sel1">
+                <OPTION>Corde
+                <OPTION>Casque
+                <OPTION>Equipements Metalliques
+                <OPTION>Express et Anneau Cousu
+                <OPTION>Harnais
+                <OPTION>Divers
+            </SELECT>
+        </label><br><br>
+        <label>Nom du Propriétaire : <br><br>
+            <input type="text" name="proprietaire" required>
+        </label><br><br>
+        <div id="type">
+            <label>Type de produit<br><br>
+                <input type="text" name="type"required>
+            </label><br><br>
+        </div>
+        <label>Modele : <br><br>
+            <input type="text" name="modele" required>
+        </label><br><br>
+        <label>Num Série Fabricant : <br><br>
+            <input type="text" name="serie" required>
+        </label><br><br>
+        <label>Identifiant Unique : <br><br>
+            <input type="text" name="IDN" pattern="^[1-9]{5}[A-Z]{2}[1-9]{4}$" required>
+        </label><br><br>
+        <label>Vérification Identifiant Unique : <br><br>
+            <input type="text" name="IDN2" pattern="^[1-9]{5}[A-Z]{2}[1-9]{4}$" required>
+        </label><br><br>
+        <label>Longueur :<br><br>
+            <input type="number" name="long" required>
+        </label><br><br>
+        <label>Couleur :<br><br>
+            <input type="text" name="couleur" required>
+        </label><br><br>
+        <label>Date achat :<br><br>
+            <input type="date" name="achat" required>
+        </label><br><br>
+        <label>Date fabrication :<br><br>
+            <input type="date" name="fabrication" required>
+        </label><br><br>
+        <label>Date fin de vie théorique : <br><br>
+            <input type="date" name="vie" required>
+        </label><br><br>
+        <label>Frequence contrôle : <br><br>
+            Tous les <br><br><input type="number" name="Ncontrole" required>
+            <SELECT name="temps" size="1" class="form-control" id="sel1">
+                <OPTION>Jours
+                <OPTION>Semaines
+                <OPTION>Mois
+                <OPTION>Annee
+            </SELECT>
+        </label><br><br>
+        <label>Date 1ère utilisation :<br><br>
+            <input type="date" name="utilisation" required>
+        </label><br><br>
+        <div id="corde">
+            <label>Type Corde :<br><br>
+                <SELECT name="type" size="1" class="form-control" id="sel1">
+                    <OPTION>1
+                    <OPTION>1/2
+                    <OPTION>&infin;
+                    <OPTION>A
+                    <OPTION>B
+                </SELECT>
+            </label><br><br>
+        </div>
+        <div id="autres">
+            <label>SI GESTION PAR LOT :<br><br>
+                Nom du lot :<br><br>
+                <input type="text" name="lot">
+            </label><br><br>
+        </div>
+        <input type="submit" value="Ajouter E.P.I" name="submit" required>
+    </form>
+</div>
+<div class="check" id="check" style="display: none">
+    <form method="post" action="">
+        <label>Type d'E.P.I :<br><br>
+            <SELECT name="type" size="1" id="EPI2" class="form-control" id="sel1">
+                <OPTION>Corde
+                <OPTION>Casque
+                <OPTION>Equipements Metalliques
+                <OPTION>Express et Anneau Cousu
+                <OPTION>Harnais
+                <OPTION>Divers
+            </SELECT>
+        </label><br><br>
+
+        <label>Identifiant de l'E.P.I :<br><br>
+            <input type="text" name="IDN" pattern="^[1-9]{5}[A-Z]{2}[1-9]{4}$" required>
+        </label><br><br>
+        <label>Nom du contrôleur :<br><br>
+            <input type="text" name="nom" required>
+        </label><br><br>
+        <label>Date contrôle :<br><br>
+            <input type="date" name="contrôle" required>
+        </label><br><br>
+        <div id="cordes">
+            Etat des terminaisons cousues :
+            <br>
+            <label>- Signes d'usures :
+                <SELECT name="usure" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label>
+            <br><br>
+            Etat de la gaine :
+            <br>
+            <label>- Brûlures :
+                <SELECT name="brulure" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label>
+            <br>
+            <label>- Coupures :
+                <SELECT name="coupure" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label>
+            <br>
+            <label>- Zones pelucheuses :
+                <SELECT name="peluche" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label>
+            <br><br>
+            Etat de l'âme:<br>
+            <label>- Brûlures :
+                <SELECT name="brulure" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label><br><br>
+        </div>
+        <div id="casque">
+            Etat de visuel :<br>
+            <label> Usures, fissures, coups,deformations, brûlures :
+                <SELECT name="visuel" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label><br><br>
+            Etat de fonctionnement:<br>
+            <label> Usures (Mousses de confort, sangles/boucles de réglages) :
+                <SELECT name="fonctionnement" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label><br><br>
+        </div>
+        <div id="metal">
+            Etat de visuel :<br>
+            <label> Usures, fissures, coups, deformations :<br>
+                <SELECT name="visuel" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label><br><br>
+            Etat de fonctionnement:<br>
+            <label> Usures (doigts, ressort, axe, came ...) :<br>
+                <SELECT name="fonctionnement" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label><br><br>
+        </div>
+        <div id="anneau">
+            Etat de la sangle :<br>
+            <label> Usures, fissures, coups, deformations decoloration (...):<br>
+                <SELECT name="visuel" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label><br><br>
+            Etat des coutures:<br>
+            <label> Coupures, brûlures, usures :<br>
+                <SELECT name="fonctionnement" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label><br><br>
+        </div>
+        <div id="harnais">
+            Etat des sangles :
+            <br>
+            <label>- Coupures, brûlures, décoloration, usures :<br>
+                <SELECT name="sangle" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label>
+            <br><br>
+            Etat de la couture :
+            <br>
+            <label>- Coupures, brûlures, usures :<br>
+                <SELECT name="couture" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label>
+            <br>
+            Etat des boucles de sécurité:<br>
+            <label>- usures, décoloration, corrosion :<br>
+                <SELECT name="boucles" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label><br><br>
+            Etat du point d'encordement :<br>
+            <label>- Tissus de renfort et de la boucle d'assurage, usures :<br>
+                <SELECT name="encordement" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label><br><br>
+            Etat des éléments de confort :<br>
+            <label>- Mousses, portematériel, élastiques de réglages, usures :<br>
+                <SELECT name="confort" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label><br><br>
+        </div>
+        <div id="divers">
+            Etat des éléments de sécurité :<br>
+            <label>- Coupures, brûlures, décoloration, usures, corrosion, distensions :<br>
+                <SELECT name="securite" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label><br><br>
+            Etat des éléments fonctionnels :<br>
+            <label>- Coupures, brûlures, décoloration, usures, corrosion, distensions :<br>
+                <SELECT name="confort" size="1" class="form-control" id="sel1">
+                    <OPTION>RAS
+                    <OPTION>Mineure
+                    <OPTION>Majeure
+                    <OPTION>Définitive
+                </SELECT>
+            </label><br><br>
+        </div>
+        <br>
+        <label>Remarques :<br>
+            <textarea name="remarques" rows="10" cols="50"></textarea>
+        </label>
+        <br><br>
+        <label>Prochaine date de contrôle :<br>
+            <input type="date" name="controle">
+        </label>
+        <br><br>
+        <input type="submit" name="submit" value="Envoyer la vérification" required>
+    </form>
+</div>
+</body>
+</html>

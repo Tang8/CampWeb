@@ -1,0 +1,32 @@
+{% extends "WebCampBundle:Advert:index.html.twig" %}
+{% block body %}
+    <body>
+    <div id="picture1">
+        {% image 'bundles/webcamp/css/pictures/*' output='logo-prep.png' %}
+        <img name="image" src="{{ asset_url }}" alt="etna" width="200">
+        {% endimage %}
+    </div>
+    <div id="header1">
+        <h1>Bienvenue</h1>
+    </div>
+    <div id="header2">
+        <h3>Veuillez vous connecter</h3>
+    </div>
+    <div id="picture2">
+        {% image 'bundles/webcamp/css/pictures/*' output='BRI.png' %}
+        <img name="image2" src="{{ asset_url }}" alt="BRI" width="80">
+        {% endimage %}
+    </div>
+    <br>
+    <div id="form">
+        {% if error is defined %}
+            <div id="error"><b>{{ error.message | default('') | replace({"Bad credentials." : "Mauvais identifiant ou mot de passe"}) }}</b></div>
+        {% endif %}
+        <form method="post" action="{{ path('login_check') }}">
+            <label>Identifiant: </label><input type="text" id="login" name="_username" required><br><br>
+            <label>Mot de passe: </label><input type="password" id="pass" name="_password" required><br><br><br>
+            <button type="submit" id="submit">Connexion</button>
+        </form>
+    </div>
+    </body>
+{% endblock %}

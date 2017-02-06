@@ -1,0 +1,7 @@
+web_camp_bundle_home:
+    path:      /
+    defaults: { _controller: WebCampBundle:Advert:index }
+
+web_camp_bundle_users:
+    path:      /users
+    defaults: { _controller: WebCampBundle:Advert:users }
